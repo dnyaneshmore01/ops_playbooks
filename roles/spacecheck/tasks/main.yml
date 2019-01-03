@@ -1,0 +1,16 @@
+---
+ - debug: "var=hostvars[inventory_hostname]"
+   tags:
+     - debug
+
+ - debug: msg="{{ item }}"
+   with_subelements:
+     - "{{ nodes }}"
+     - applications
+   tags:
+     - debug
+
+#PLAYBOOKS
+ - include: space_check.yml
+   tags:
+     - deploy
