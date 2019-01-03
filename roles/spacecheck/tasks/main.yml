@@ -4,7 +4,7 @@
      - debug
 
  - debug: msg="{{ item }}"
-   with_subelements:
+   with_items:
      - "{{ nodes }}"
    tags:
      - debug
