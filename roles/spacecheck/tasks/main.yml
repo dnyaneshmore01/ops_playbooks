@@ -6,7 +6,6 @@
  - debug: msg="{{ item }}"
    with_subelements:
      - "{{ nodes }}"
-     - applications
    tags:
      - debug
 
