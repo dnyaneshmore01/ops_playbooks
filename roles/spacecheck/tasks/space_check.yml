@@ -5,5 +5,5 @@
   changed_when: False
 
 - name: create dir
-  shell: "ssh -T {{remote_user}}@{item.target_ip}} 'mkdir -p /tmp/test ' "
+  shell: "ssh -T {{remote_user}}@{{item.target_ip}} 'mkdir -p /tmp/test ' "
   with_items: "{{ nodes }}"
