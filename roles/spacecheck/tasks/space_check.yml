@@ -1,8 +1,8 @@
 ---
 - name: check if there is free space
-  shell:{{free_space_available }}= ssh -T {{remote_user}}@{{ item.target_ip }} '$((`df -m {{home}} | tail -1 | tr -s " " | cut -d" " -f 4`))'
+  shell: ssh -T {{remote_user}}@{{ item.target_ip }} '$((`df -m {{home}} | tail -1 | tr -s " " | cut -d" " -f 4`<={{free_space_needed}}))'
   with_items: "{{ nodes }}"
-  changed_when: {{free_space_available}} <= {{free_space_needed}}
+  changed_when: False
 
 - name: create dir
   shell: "ssh -T {{remote_user}}@{{item.target_ip}} 'mkdir -p /tmp/test ' "
