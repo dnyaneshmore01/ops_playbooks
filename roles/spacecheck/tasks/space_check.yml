@@ -1,9 +1,6 @@
 ---
-- name: check if there is free space
-  shell: ssh -T {{remote_user}}@{{ item.target_ip }} '$((`df -m {{home}} | tail -1 | tr -s " " | cut -d" " -f 4`<={{free_space_needed}}))'
-  with_items: "{{ nodes }}"
-  changed_when: False
+- name: check space
+  shell: df -hT | grep "/home" | awk '{print $3,$4,$5}'  
+  with_items: "{{nodes}}
 
-- name: create dir
-  shell: "ssh -T {{remote_user}}@{{item.target_ip}} 'mkdir -p /tmp/test ' "
-  with_items: "{{ nodes }}"
+
