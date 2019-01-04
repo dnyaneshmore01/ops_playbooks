@@ -1,6 +1,8 @@
 ---
 - name: check space
-  shell: "ssh -T {{remote_user}}@{{item.target_ip}} df -hT | grep "/home" | awk '{print $3,$4,$5}'"
-  with_items: "{{nodes}}
+  shell: df -hT | grep "/home" | awk '{print $3,$4,$5}'
+  register: df
+  with_items: {{ nodes }}
+  debug: var=df.stdout_lines
 
 
